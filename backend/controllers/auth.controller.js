@@ -16,7 +16,7 @@ const generateTokens = (userId) => {
 
 const storeRefreshToken = async (userId, refreshToken) => {
   await redis.set(
-    `refreshToken:${userId}`,
+    `refresh_token:${userId}`,
     refreshToken,
     "EX",
     7 * 24 * 60 * 60
@@ -83,7 +83,7 @@ export const logout = async (req, res) => {
         refreshToken,
         process.env.REFRESH_TOKEN_SECRET
       );
-      await redis.del(`refreshToken:${decoded.userId}`);
+      await redis.del(`refresh_token:${decoded.userId}`);
     }
 
     res.clearCookie("accessToken");
