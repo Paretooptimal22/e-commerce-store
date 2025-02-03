@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 
 import authRoutes from "./routes/auth.route.js";
+import productRoutes from "./routes/product.route.js";
 
 import { connectDB } from "./lib/db.js";
 
@@ -15,6 +16,7 @@ app.use(express.json()); // for parsing application/json
 app.use(cookieParser()); // for parsing cookies
 
 app.use("/api/auth", authRoutes);
+app.use("/api/products", productRoutes);
 
 app.listen(PORT, () => {
   console.log("Servier is running on http://localhost:" + PORT);
